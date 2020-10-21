@@ -10,12 +10,12 @@ using Translator.Services;
 
 namespace Translator.Controllers
 {
-    public class EnglishControllers : Controller
+    public class EnglishController : Controller
     {
 
         private readonly IEnglishToSpanishService _englishToSpanishService;
 
-        public EnglishControllers(IEnglishToSpanishService englishToSpanishService)
+        public EnglishController(IEnglishToSpanishService englishToSpanishService)
         {
             _englishToSpanishService = englishToSpanishService;
         }
@@ -64,6 +64,20 @@ namespace Translator.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public IActionResult Definition()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Definition(String englishTospanish)
+        {
+            return View(_englishToSpanishService.GetDefinitions(englishTospanish));
+        }
+
+
 
 
         public IActionResult Index()

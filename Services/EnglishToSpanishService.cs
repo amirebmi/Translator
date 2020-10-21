@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace Translator.Services
 {
     public interface IEnglishToSpanishService
     {
-        List<EnglishToSpanish> GetDefinitions(EnglishToSpanish englishToSpanish);
+        List<EnglishToSpanish> GetDefinitions(String englishToSpanish);
         void AddWord(EnglishToSpanish englishToSpanish);
 
         void SaveChanges();
@@ -29,9 +30,11 @@ namespace Translator.Services
             _db.Add(englishToSpanish);
         }
 
-        public List<EnglishToSpanish> GetDefinitions(EnglishToSpanish englishToSpanish)
+        public List<EnglishToSpanish> GetDefinitions(String englishTospanish)
         {
-            var definitions = _db.SpanishDefinitions.Where(d => d.Definition == englishToSpanish.EngWord).ToList();
+            var definitions = _db.SpanishDefinitions.Where(d => d.EngWord == englishTospanish).ToList();
+
+
 
             return definitions;
         }

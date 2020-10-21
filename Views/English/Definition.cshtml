@@ -1,0 +1,23 @@
+﻿ @model List<EnglishToSpanish> 
+
+<form method="post">
+    <input type="text" required name="englishTospanish" />
+    <button type="submit">Translate</button>
+
+    @if (Model != null)
+    {
+        @foreach (var definition in Model)
+        {
+            <ul>
+                <li>
+                    @definition.Definition
+                </li>
+            </ul>
+        }
+    }
+
+
+
+
+</form>
+
